@@ -30,7 +30,7 @@ def check_sale(url, size, email_login_args, recipient_emails, percent_threshold)
         sale_percent = (1 - (float(int_data[size]['Price']) / float(int_data[size]['original_price']))) * 100
         sale_percent = round(np.abs(sale_percent), 0)
 
-        if int_data[size]['Availability'] == "OutOfStock" and sale_percent >= percent_threshold:
+        if int_data[size]['Availability'] != "OutOfStock" and sale_percent >= percent_threshold:
             subject = "Tracked item is on sale!"
             body = "Your tracked item at " + url + " is on sale!\nIt is currently in stock in your desired size " \
                                                    "of " + str(size) + " for " + str(int(sale_percent)) + "% off!"
